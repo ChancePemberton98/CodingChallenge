@@ -1,0 +1,14 @@
+user:
+  username: chance.pemberton@gmail.com
+  password: Lun@th3d0g01022021
+  email: chance.pemberton@gmail.com
+  email_password: xnvo oapv shzq fxfz
+
+email:
+  host: imap.gmail.com
+  port: 993
+  tls: true
+  rejectUnauthorized: false
+
+app:
+  url: https://kraken.com/sign-in/
