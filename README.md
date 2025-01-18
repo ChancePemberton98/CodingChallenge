@@ -22,7 +22,8 @@ Install project dependencies:
 npm install
 
 Ensure your IMAP server credentials and app URL are configured in the config.yaml file. If the config.yaml file does not exist, create one based on the template below:
-Example config.yaml
+
+## Example config.yaml
 
 app:
   url: 'https://your-app.com'
