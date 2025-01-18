@@ -1,11 +1,11 @@
 user:
-  username: chance.pemberton@gmail.com
-  password: Lun@th3d0g01022021
-  email: chance.pemberton@gmail.com
-  email_password: xnvo oapv shzq fxfz
+  username: #Update This
+  password: #Update This
+  email: #Update This
+  email_password: #Update this using an Application Password from gmail or Outlook if using 2FA (https://support.google.com/accounts/answer/185833?hl=en)
 
 email:
-  host: imap.gmail.com
+  host: imap.gmail.com #Update this if you're not using gmail for IMAP. imap-mail.outlook.com for Outlook
   port: 993
   tls: true
   rejectUnauthorized: false
