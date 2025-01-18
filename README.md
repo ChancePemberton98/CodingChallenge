@@ -80,7 +80,7 @@ Configuration Details
     Email Configuration:
         The email credentials (user email, password) and IMAP settings are specified in config.yaml.
         This information is used to connect to your email account and fetch the verification link for the login process.
-        When using the email password for sites that use 2FA (Gmail, Outlook, etc.), you will need to set up an Application 
+        When using the email password for sites that use 2FA (Gmail, Outlook, etc.), you will need to set up an Application Password           (https://support.google.com/accounts/answer/185833?hl=en)
 
     Test Timeout:
         The timeout before fetching the email verification link is set to 15 seconds by default (15000 ms). You can adjust this by passing a different value to the EmailLinkVerifier class.
