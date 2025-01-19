@@ -75,6 +75,9 @@ npx playwright test
 ```
 
 ### Running a Specific Test
+
+**Note:** These tests need to be run one project at a time (e.g., chromium, firefox, or webkit). Running all projects simultaneously is not supported in this setup.
+
 If you'd like to run a specific test file, use the `--test` flag:
 ```bash
 npx playwright test tests/BalanceTest.spec.js
@@ -86,8 +89,6 @@ You can run tests for a specific browser using the `--project` flag:
 npx playwright test tests/BalanceTest.spec.js --project=chromium
 ```
 Replace `chromium` with `firefox` or `webkit` to test on those browsers.
-
-**Note:** These tests need to be run one project at a time (e.g., chromium, firefox, or webkit). Running all projects simultaneously is not supported in this setup.
 
 ### Running the Tests in Headed Mode
 By default, Playwright runs tests in headless mode (without launching a visible browser). To run in headed mode:
