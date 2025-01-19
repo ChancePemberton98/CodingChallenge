@@ -32,17 +32,11 @@ module.exports = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'setup', 
-      testMatch: '**/*.spec.js', // Matches all tests
-    },
-    {
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'playwright/.auth/user.json', // Path to storage state, persists authentication
         args: ['--disable-blink-features=AutomationControlled'], 
       },
-      dependencies: ['setup'], // Ensure the setup project is executed first
     },
     {
       name: 'firefox',
@@ -55,7 +49,7 @@ module.exports = defineConfig({
       name: 'webkit',
       use: {
         ...devices['Desktop Safari'],
-        args: ['--disable-blink-features=AutomationControlled'], // Add the flag here
+        args: ['--disable-blink-features=AutomationControlled'],
       },
     },
   ],
