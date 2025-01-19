@@ -26,7 +26,7 @@ Before running the tests, ensure you have the following installed on your local 
    npm install
    ```
 
-3. Ensure your IMAP server credentials and app URL are configured in the `config.yaml` file. If the `config.yaml` file does not exist, create one based on the template below:
+3. Ensure your IMAP server credentials, app URL, and site login information are configured in the `config.yaml` file. If the `config.yaml` file does not exist, create one based on the template below:
 
    ### Example `config.yaml`
    ```yaml
@@ -68,6 +68,7 @@ This contains classes that represent individual pages and actions in the applica
 - **portfoliopage.js**: Handles the portfolio page validation.
 
 ## Running the Tests
+**Note:** These tests need to be run one project at a time (e.g., chromium, firefox, or webkit). Running all projects simultaneously is not supported in this setup.
 
 To run the tests, use the Playwright test runner with the following command:
 ```bash
@@ -76,14 +77,12 @@ npx playwright test
 
 ### Running a Specific Test
 
-**Note:** These tests need to be run one project at a time (e.g., chromium, firefox, or webkit). Running all projects simultaneously is not supported in this setup.
-
 If you'd like to run a specific test file, use the `--test` flag:
 ```bash
 npx playwright test tests/BalanceTest.spec.js
 ```
 
-### Running the Tests for a Specific Browser
+### Running the Tests for a Specific Browser (PLEASE USE THIS ONE. THIS IS THE MOST CONSISTENT OPTION AS OF NOW)
 You can run tests for a specific browser using the `--project` flag:
 ```bash
 npx playwright test tests/BalanceTest.spec.js --project=chromium
@@ -110,6 +109,7 @@ npx playwright test tests/BalanceTest.spec.js --headed
 - The `--disable-blink-features=AutomationControlled` flag is added to reduce detection of automated browser sessions by websites. This is configured in `playwright.config.js` under the `args` property for each browser project.
 
 ### Debugging Tips
+- If you are having issues running this test, make sure that you delete the **test-results** folder before you run again. For some reason this folder gets created and sometimes causes some weird issues.
 - Use the `trace` option to collect traces for failed tests:
   ```js
   trace: 'on-first-retry'
