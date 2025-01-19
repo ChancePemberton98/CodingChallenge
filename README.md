@@ -24,7 +24,7 @@ npm install
 Ensure your IMAP server credentials and app URL are configured in the config.yaml file. If the config.yaml file does not exist, create one based on the template below:
 
 ## Example config.yaml
-
+```
 app:
   url: 'https://your-app.com'
 
@@ -39,7 +39,7 @@ email:
   port: 993                # IMAP port for secure connection
   tls: true                # Use TLS encryption
   rejectUnauthorized: false # Set to true if using secure connections
-
+```
 Ensure Playwright browsers are installed:
 
     npx playwright install
