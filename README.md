@@ -82,7 +82,7 @@ If you'd like to run a specific test file, use the `--test` flag:
 npx playwright test tests/BalanceTest.spec.js
 ```
 
-### Running the Tests for a Specific Browser
+### Running the Tests for a Specific Browser (PLEASE USE THIS ONE. THIS IS THE MOST CONSISTENT OPTION AS OF NOW)
 You can run tests for a specific browser using the `--project` flag:
 ```bash
 npx playwright test tests/BalanceTest.spec.js --project=chromium
