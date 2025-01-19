@@ -68,6 +68,7 @@ This contains classes that represent individual pages and actions in the applica
 - **portfoliopage.js**: Handles the portfolio page validation.
 
 ## Running the Tests
+**Note:** These tests need to be run one project at a time (e.g., chromium, firefox, or webkit). Running all projects simultaneously is not supported in this setup.
 
 To run the tests, use the Playwright test runner with the following command:
 ```bash
@@ -75,8 +76,6 @@ npx playwright test
 ```
 
 ### Running a Specific Test
-
-**Note:** These tests need to be run one project at a time (e.g., chromium, firefox, or webkit). Running all projects simultaneously is not supported in this setup.
 
 If you'd like to run a specific test file, use the `--test` flag:
 ```bash
