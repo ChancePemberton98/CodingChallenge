@@ -109,6 +109,7 @@ npx playwright test tests/BalanceTest.spec.js --headed
 - The `--disable-blink-features=AutomationControlled` flag is added to reduce detection of automated browser sessions by websites. This is configured in `playwright.config.js` under the `args` property for each browser project.
 
 ### Debugging Tips
+- If you are having issues running this test, make sure that you delete the **test-results** folder before you run again. For some reason this folder gets created and sometimes causes some weird issues.
 - Use the `trace` option to collect traces for failed tests:
   ```js
   trace: 'on-first-retry'
