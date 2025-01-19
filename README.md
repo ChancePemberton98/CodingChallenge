@@ -6,9 +6,12 @@ This project uses Playwright to run automated end-to-end tests. It includes func
 
 Before running the tests, ensure you have the following installed on your local machine:
 
-1. **Node.js** (v16 or later)** - To install [Node.js](https://nodejs.org/).
-2. **Playwright** - For end-to-end browser automation.```npm install playwright```
-3. **IMAP-Compatible Email Account** - You'll need a valid email account configured with IMAP access to fetch the email verification link.
+- **Node.js (v16 or later)** - To install Node.js.
+- **Playwright** - For end-to-end browser automation. Install it with:
+  ```bash
+  npm install playwright
+  ```
+- **IMAP-Compatible Email Account** - You'll need a valid email account configured with IMAP access to fetch the email verification link.
 
 ## Installation
 
@@ -16,72 +19,101 @@ Before running the tests, ensure you have the following installed on your local 
    ```bash
    git clone <repository-url>
    cd <repository-directory>
+   ```
 
-Install project dependencies:
+2. Install project dependencies:
+   ```bash
+   npm install
+   ```
 
-npm install
+3. Ensure your IMAP server credentials and app URL are configured in the `config.yaml` file. If the `config.yaml` file does not exist, create one based on the template below:
 
-Ensure your IMAP server credentials and app URL are configured in the config.yaml file. If the config.yaml file does not exist, create one based on the template below:
+   ### Example `config.yaml`
+   ```yaml
+   app:
+     url: 'https://your-app.com'
 
-## Example config.yaml
-```
-app:
-  url: 'https://your-app.com'
+   user:
+     username: 'your-username'
+     password: 'your-password'
+     email: 'your-email@example.com'
+     email_password: 'your-email-password'
 
-user:
-  username: 'your-username'
-  password: 'your-password'
-  email: 'your-email@example.com'
-  email_password: 'your-email-password'
+   email:
+     host: 'imap.gmail.com'   # Change based on your email provider
+     port: 993                # IMAP port for secure connection
+     tls: true                # Use TLS encryption
+     rejectUnauthorized: false # Set to true if using secure connections
+   ```
 
-email:
-  host: 'imap.gmail.com'   # Change based on your email provider
-  port: 993                # IMAP port for secure connection
-  tls: true                # Use TLS encryption
-  rejectUnauthorized: false # Set to true if using secure connections
-```
-Ensure Playwright browsers are installed:
+4. Ensure Playwright browsers are installed:
+   ```bash
+   npx playwright install
+   ```
 
-    npx playwright install
+## Test Structure
 
-Test Structure
+### Tests Directory
+All Playwright test scripts are located in the `tests/` directory.
 
-    Tests Directory: All Playwright test scripts are located in the tests/ directory.
-        BalanceTest.spec.js: Main test file that logs in, fetches the email verification link, and checks the portfolio balance.
+- **BalanceTest.spec.js**: Main test file that logs in, fetches the email verification link, and checks the portfolio balance.
 
-    Pages Directory: This contains classes that represent individual pages and actions in the application.
-        loginpage.js: Login functionality.
-        emaillogic.js: Logic to fetch and verify the email containing the verification link.
-        transactionpage.js: Handles transaction-related actions.
-        homepage.js: Handles the homepage navigation and interactions.
-        portfoliopage.js: Handles the portfolio page validation.
+### Pages Directory
+This contains classes that represent individual pages and actions in the application.
 
-Running the Tests
+- **loginpage.js**: Login functionality.
+- **emaillogic.js**: Logic to fetch and verify the email containing the verification link.
+- **transactionpage.js**: Handles transaction-related actions.
+- **homepage.js**: Handles the homepage navigation and interactions.
+- **portfoliopage.js**: Handles the portfolio page validation.
+
+## Running the Tests
 
 To run the tests, use the Playwright test runner with the following command:
+```bash
+npx playwright test
+```
 
-    npx playwright test
+### Running a Specific Test
+If you'd like to run a specific test file, use the `--test` flag:
+```bash
+npx playwright test tests/BalanceTest.spec.js
+```
 
-Running a Specific Test
+### Running the Tests for a Specific Browser
+You can run tests for a specific browser using the `--project` flag:
+```bash
+npx playwright test tests/BalanceTest.spec.js --project=chromium
+```
+Replace `chromium` with `firefox` or `webkit` to test on those browsers.
 
-If you'd like to run a specific test file, use the --test flag:
+**Note:** These tests need to be run one project at a time (e.g., chromium, firefox, or webkit). Running all projects simultaneously is not supported in this setup.
 
-    npx playwright test tests/BalanceTest.spec.js
+### Running the Tests in Headed Mode
+By default, Playwright runs tests in headless mode (without launching a visible browser). To run in headed mode:
+```bash
+npx playwright test tests/BalanceTest.spec.js --headed
+```
 
-Running the Tests in Headless Mode
+## Configuration Details
 
-By default, Playwright runs tests in headless mode (without launching a visible browser). You can override this by setting the headless option to false in your test configuration file (playwright.config.js) under the use section.
+### Email Configuration
+- The email credentials (user email, password) and IMAP settings are specified in `config.yaml`.
+- This information is used to connect to your email account and fetch the verification link for the login process.
+- When using email passwords for accounts with two-factor authentication (e.g., Gmail, Outlook), you will need to set up an [Application Password](https://support.google.com/accounts/answer/185833?hl=en).
 
-    use: {
-      headless: false,  // Set to false to run with a visible browser
-    }
+### Test Timeout
+- The timeout before fetching the email verification link is set to **15 seconds** by default (15000 ms). You can adjust this by passing a different value to the `EmailLinkVerifier` class.
 
-Configuration Details
+### Browser Arguments
+- The `--disable-blink-features=AutomationControlled` flag is added to reduce detection of automated browser sessions by websites. This is configured in `playwright.config.js` under the `args` property for each browser project.
 
-    Email Configuration:
-        The email credentials (user email, password) and IMAP settings are specified in config.yaml.
-        This information is used to connect to your email account and fetch the verification link for the login process.
-        When using the email password for sites that use 2FA (Gmail, Outlook, etc.), you will need to set up an Application Password           (https://support.google.com/accounts/answer/185833?hl=en)
+### Debugging Tips
+- Use the `trace` option to collect traces for failed tests:
+  ```js
+  trace: 'on-first-retry'
+  ```
+- Traces can be opened in the Playwright Trace Viewer for detailed debugging.
 
-    Test Timeout:
-        The timeout before fetching the email verification link is set to 15 seconds by default (15000 ms). You can adjust this by passing a different value to the EmailLinkVerifier class.
+### Dependency Management
+- Make sure to run `npx playwright install` after cloning the repository to ensure that the required browser binaries are installed.
