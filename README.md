@@ -7,7 +7,7 @@ This project uses Playwright to run automated end-to-end tests. It includes func
 Before running the tests, ensure you have the following installed on your local machine:
 
 1. **Node.js** (v16 or later)** - To install [Node.js](https://nodejs.org/).
-2. **Playwright** - For end-to-end browser automation.
+2. **Playwright** - For end-to-end browser automation.```npm install playwright```
 3. **IMAP-Compatible Email Account** - You'll need a valid email account configured with IMAP access to fetch the email verification link.
 
 ## Installation
