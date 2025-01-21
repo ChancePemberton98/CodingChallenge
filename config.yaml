@@ -11,4 +11,4 @@ email:
   rejectUnauthorized: false
 
 app:
-  url: https://kraken.com/sign-in/
+  url: #Update This
