@@ -53,6 +53,7 @@ test('Login to application and verify email in the same browser', async ({ page 
     await verificationTab.waitForTimeout(3000); // Pause for verification
     await verificationTab.close(); // Close the new tab
     console.log('Verification tab closed after verification link was accessed.');
+    await home.check2FAPage();
 
     // Step 4: Continue with the rest of your test
     await home.navigateToTransactions();
